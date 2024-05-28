@@ -7,3 +7,4 @@ export const movieRouter = Router()
 
 movieRouter.route("/?").get(auth.authenticateAll,controller.getAllMovies).post(auth.authenticateAdmin,controller.createMovie)
 movieRouter.route("/:id").get(controller.getMovieById).put(auth.authenticateAdmin,controller.updateMovie).delete(auth.authenticateAdmin,controller.deleteMovie)
+movieRouter.route("/getpdf/pdf/?").get(auth.authenticateAll,controller.getAllMoviesPDF)
