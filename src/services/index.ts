@@ -1,0 +1,5 @@
+export * from "./user.service"
+export * from "./login.service"
+export * from "./genre.service"
+export * from "./movie.service"
+export * from "./review.service"

@@ -1,0 +1,6 @@
+export * from "./user.controller"
+export * from "./signup.controller"
+export * from "./login.controller"
+export * from "./genre.controller"
+export * from "./movie.controller"
+export * from "./review.controller"

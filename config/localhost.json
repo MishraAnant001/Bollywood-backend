@@ -1,0 +1,5 @@
+{
+    "PORT":6000,
+    "MONGOURI":"mongodb+srv://anantmanojmishra:kNp8tfu3NJ4SfBXp@backenddb.kuqejt8.mongodb.net/bollybackendlocal?retryWrites=true&w=majority&appName=BackendDB",
+    "SECRET_KEY":"anantmanojmishra"
+}
