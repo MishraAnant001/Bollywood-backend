@@ -93,4 +93,62 @@ export class UserController{
             }
         }
     }
+    async forgotPassword(req:Request,res:Response):Promise<Response>{
+        try {
+            const{email} = req.body;
+            const response = await service.forgotPassword(email as string)
+            return res.status(response.statusCode).json(response)
+        } catch (error:any) {
+            if(error instanceof ApiError){
+                return res.status(error.statusCode).json({
+                    success:false,
+                    message:error.message
+                })
+            }else{
+                return res.status(ErrorCodes.internalServerError).json({
+                    success:false,
+                    message:`Error while sending otp to the user : ${error.message}`
+                })
+            }
+        }
+    }
+    async verifyOtp(req:Request,res:Response):Promise<Response>{
+        try {
+            const{email,otp} = req.body;
+            // console.log(email,otp)
+            const response = await service.verifyOtp(email as string,Number(otp))
+            return res.status(response.statusCode).json(response)
+        } catch (error:any) {
+            if(error instanceof ApiError){
+                return res.status(error.statusCode).json({
+                    success:false,
+                    message:error.message
+                })
+            }else{
+                return res.status(ErrorCodes.internalServerError).json({
+                    success:false,
+                    message:`Error while verifying the user : ${error.message}`
+                })
+            }
+        }
+    }
+    async setPassword(req:Request,res:Response):Promise<Response>{
+        try {
+            const{email,password} = req.body;
+            const response = await service.setPassword(email as string,password as string)
+            return res.status(response.statusCode).json(response)
+        } catch (error:any) {
+            if(error instanceof ApiError){
+                return res.status(error.statusCode).json({
+                    success:false,
+                    message:error.message
+                })
+            }else{
+                return res.status(ErrorCodes.internalServerError).json({
+                    success:false,
+                    message:`Error while setting the password : ${error.message}`
+                })
+            }
+        }
+    }
 }

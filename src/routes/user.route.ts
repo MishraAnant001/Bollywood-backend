@@ -5,6 +5,10 @@ const auth = new Authentication()
 const controller= new UserController()
 export const userRouter = Router()
 
-userRouter.use(auth.authenticateAdmin)
-userRouter.route("/?").get(controller.getAllUsers).post(controller.createUser)
-userRouter.route("/:id").get(controller.getUserbyId).put(controller.updateUser).delete(controller.deleteUser)
+
+userRouter.route("/?").get(auth.authenticateAdmin,controller.getAllUsers)
+userRouter.route("/").post(auth.authenticateAdmin,controller.createUser)
+userRouter.route("/:id").get(auth.authenticateAdmin,controller.getUserbyId).put(auth.authenticateAdmin,controller.updateUser).delete(auth.authenticateAdmin,controller.deleteUser)
+userRouter.post("/forgotpassword",controller.forgotPassword)
+userRouter.post("/verifyotp",controller.verifyOtp)
+userRouter.post("/setpassword",controller.setPassword)
